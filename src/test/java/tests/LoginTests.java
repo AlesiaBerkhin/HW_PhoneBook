@@ -12,7 +12,7 @@ public class LoginTests extends TestBase{
     public void loginPositiveTest() {
 
         app.getHelperUser().openLoginRegistrationForm();
-        app.getHelperUser().fillLoginForm("katy@mail.ru", "Kk12345!");
+        app.getHelperUser().fillLoginRegistrationForm("katy@mail.ru", "Kk12345!");
         app.getHelperUser().submitLogin();
         app.getHelperUser().pause(3000);
         Assert.assertTrue(app.getHelperUser().isElementPresent(By.tagName("button")));
@@ -22,7 +22,7 @@ public class LoginTests extends TestBase{
     public void loginNegativeTestWrongEmail(){
 
         app.getHelperUser().openLoginRegistrationForm();
-        app.getHelperUser().fillLoginForm("katymail.ru","Kk12345!");
+        app.getHelperUser().fillLoginRegistrationForm("katymail.ru","Kk12345!");
         app.getHelperUser().submitLogin();
         app.getHelperUser().pause(3000);
         Assert.assertTrue(app.getHelperUser().isAlertPresent());
@@ -31,13 +31,10 @@ public class LoginTests extends TestBase{
     @Test
     public void loginNegativeTestWrongPassword(){
         app.getHelperUser().openLoginRegistrationForm();
-        app.getHelperUser().fillLoginForm("katy@mail.ru","Kk12345");
+        app.getHelperUser().fillLoginRegistrationForm("katy@mail.ru","Kk12345");
         app.getHelperUser().submitLogin();
         app.getHelperUser().pause(3000);
         Assert.assertTrue(app.getHelperUser().isAlertPresent());
     }
-
-
-
 
 }
