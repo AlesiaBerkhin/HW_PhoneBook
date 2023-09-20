@@ -9,6 +9,10 @@ public class LoginTests extends TestBase{
 
 
     @Test
+    public void loginPositiveTestModel(){
+    }
+
+    @Test
     public void loginPositiveTest() {
 
         app.getHelperUser().openLoginRegistrationForm();
