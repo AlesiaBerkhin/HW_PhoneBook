@@ -2,7 +2,7 @@ package manager;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
-import user.User;
+import models.User;
 
 public class HelperUser extends HelperBase{
 
@@ -33,7 +33,8 @@ public class HelperUser extends HelperBase{
     }
     public void fillLoginRegistrationForm(String email, String password) {
         type(By.xpath("//input[1]"),email);
-        type(By.xpath("//input[2]"),password);
+      type(By.xpath("//input[2]"),password);
+
     }
 
 //    public void fillRegistrationForm(String email, String password) {
@@ -45,4 +46,9 @@ public class HelperUser extends HelperBase{
         wd.findElement(By.xpath("//*[.='LOGIN']")).click();
     }
 
+    public void login(models.User user){
+        openLoginRegistrationForm();
+        fillLoginRegistrationForm(user);
+        submitLogin();
+    }
 }

@@ -1,22 +1,19 @@
 package models;
 
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Builder
-@Setter
 @Getter
+@Setter
 @ToString
+@Builder
 
-public class Contact {
+public class User {
 
-    String name;
-    String lastName;
-    String phone;
     String email;
-    String address;
-    String discription;
+    String password;
 
 }
