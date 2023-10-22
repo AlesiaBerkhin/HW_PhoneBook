@@ -58,7 +58,7 @@ public class LoginTests extends TestBase{
     public void loginNegativeTestWrongEmail(){
 
         app.getHelperUser().openLoginRegistrationForm();
-        app.getHelperUser().fillLoginRegistrationForm("katymail.ru","Kk12345!");
+        app.getHelperUser().fillLoginRegistrationForm("katy_mail.ru","Kk12345!");
         app.getHelperUser().submitLogin();
         app.getHelperUser().pause(3000);
         Assert.assertTrue(app.getHelperUser().isAlertPresent());
