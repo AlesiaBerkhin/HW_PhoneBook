@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tests.AddNewContactTests" tests="6" skipped="0" failures="0" errors="0" timestamp="2023-10-22T09:36:34" hostname="alesias-mbp" time="44.743">
+  <properties/>
+  <testcase name="addNewContactPositive" classname="tests.AddNewContactTests" time="2.105"/>
+  <testcase name="addNewContactPositiveDTO[0](Contact(name=Koko_2196, lastName=Chanel, phone=1234562196, email=koko_2196@mail.ru, address=Paris, discription=Lady))" classname="tests.AddNewContactTests" time="1.977"/>
+  <testcase name="addNewContactPositiveDTO[1](Contact(name=Koko_2196, lastName=Chanel, phone=1234562196, email=koko_2196@mail.ru, address=Paris, discription=Lady))" classname="tests.AddNewContactTests" time="1.95"/>
+  <testcase name="addNewContactPositive" classname="tests.AddNewContactTests" time="2.105"/>
+  <testcase name="addNewContactPositiveDTO[0](Contact(name=Koko_2234, lastName=Chanel, phone=1234562234, email=koko_2234@mail.ru, address=Paris, discription=Lady))" classname="tests.AddNewContactTests" time="1.972"/>
+  <testcase name="addNewContactPositiveDTO[1](Contact(name=Koko_2234, lastName=Chanel, phone=1234562234, email=koko_2234@mail.ru, address=Paris, discription=Lady))" classname="tests.AddNewContactTests" time="1.976"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
