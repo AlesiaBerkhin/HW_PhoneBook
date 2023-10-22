@@ -9,6 +9,7 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
 
 public class TestBase {
@@ -19,12 +20,12 @@ public class TestBase {
 
     Logger logger = LoggerFactory.getLogger(TestBase.class);
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void startTest(Method method){
         logger.info("Started test ---->" + method.getName());
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void stopTest(Method method){
 
         logger.info("Finished test ---->" + method.getName());
@@ -32,13 +33,13 @@ public class TestBase {
 
     }
 
-    @BeforeSuite
-    public void setup() {
+    @BeforeSuite(alwaysRun = true)
+    public void setup() throws IOException {
 
         app.init();
     }
 
-    @AfterSuite
+    @AfterSuite(alwaysRun = true)
     public void stop() {
         app.tearDown();
     }

@@ -1,6 +1,7 @@
 package tests;
 
 import manager.NGListener;
+import manager.ProviderData;
 import models.User;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -12,7 +13,7 @@ public class LoginTests extends TestBase{
 
 
 
-    @Test
+    @Test(groups ={"positive"})
     public void loginPositiveTest() {
 
         app.getHelperUser().openLoginRegistrationForm();
@@ -22,12 +23,12 @@ public class LoginTests extends TestBase{
         Assert.assertTrue(app.getHelperUser().isElementPresent(By.tagName("button")));
     }
 
-    @Test
+    @Test(groups ={"positive"})
     public void loginPositiveTestModel1(){
 
         User user = User.builder()
-                .email("abc@def.com")
-                .password("$Abcdef12345")
+                .email("katy@mail.ru")
+                .password("Kk12345!")
                 .build();
         app.getHelperUser().openLoginRegistrationForm();
         app.getHelperUser().fillLoginRegistrationForm(user.getEmail(), user.getPassword());
@@ -35,8 +36,25 @@ public class LoginTests extends TestBase{
         app.getHelperUser().pause(3000);
         Assert.assertTrue(app.getHelperUser().isElementPresent(By.tagName("button")));
     }
+    @Test(groups ={"positive"})
+    public void loginPositiveTestModelProps(){
 
-    @Test
+        app.getHelperUser().openLoginRegistrationForm();
+        app.getHelperUser().fillLoginRegistrationForm(app.getEmail(), app.getPassword());
+        app.getHelperUser().submitLogin();
+        app.getHelperUser().pause(3000);
+        Assert.assertTrue(app.getHelperUser().isElementPresent(By.tagName("button")));
+    }
+    @Test(groups ={"positive"}, dataProvider = "userDTO", dataProviderClass = ProviderData.class)
+    public void loginPositiveTestUserDTO(User user){
+        app.getHelperUser().openLoginRegistrationForm();
+        app.getHelperUser().fillLoginRegistrationForm(user.getEmail(), user.getPassword());
+        app.getHelperUser().submitLogin();
+        app.getHelperUser().pause(3000);
+        Assert.assertTrue(app.getHelperUser().isElementPresent(By.tagName("button")));
+    }
+
+    @Test(groups = {"negative", "smoke"})
     public void loginNegativeTestWrongEmail(){
 
         app.getHelperUser().openLoginRegistrationForm();
@@ -46,7 +64,7 @@ public class LoginTests extends TestBase{
         Assert.assertTrue(app.getHelperUser().isAlertPresent());
     }
 
-    @Test
+    @Test(groups = {"negative"})
     public void loginNegativeTestWrongPassword(){
         app.getHelperUser().openLoginRegistrationForm();
         app.getHelperUser().fillLoginRegistrationForm("katy@mail.ru","Kk12345");

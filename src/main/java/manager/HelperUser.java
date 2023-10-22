@@ -46,9 +46,14 @@ public class HelperUser extends HelperBase{
         wd.findElement(By.xpath("//*[.='LOGIN']")).click();
     }
 
-    public void login(models.User user){
+    public void login(User user){
         openLoginRegistrationForm();
         fillLoginRegistrationForm(user);
+        submitLogin();
+    }
+    public void login(String email, String password){
+        openLoginRegistrationForm();
+        fillLoginRegistrationForm(email, password);
         submitLogin();
     }
 }

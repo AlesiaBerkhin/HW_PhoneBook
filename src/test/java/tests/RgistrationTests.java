@@ -1,12 +1,24 @@
 package tests;
 
+import manager.ProviderData;
+import models.User;
 import org.openqa.selenium.By;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
 
 public class RgistrationTests extends TestBase{
 
-    @Test
+    @BeforeMethod(alwaysRun = true)
+    public void precondition(){
+        if(app.getHelperUser().isLogged()){
+            app.getHelperUser().logout();
+        }
+
+    }
+
+    @Test(groups ={"positive"})
     public void registrationPositiveTest(){
         int i = (int)(System.currentTimeMillis()/1000)%3600;
         String email = "katy_" + i + "@mail.ru";
@@ -23,10 +35,21 @@ public class RgistrationTests extends TestBase{
         logger.info("registrationPositiveTest" + email + "&" + password);
         Assert.assertTrue(app.getHelperUser().isElementPresent(By.tagName("button")));
     }
+    @Test(groups ={"positive"}, dataProvider = "registrationCSV", dataProviderClass = ProviderData.class)
+    public void registrationPositiveTestCSV(User user){
+        String email = user.getEmail();
+        String password = user.getPassword();
+
+        app.getHelperUser().openLoginRegistrationForm();
+        app.getHelperUser().fillLoginRegistrationForm(email, password);
+        app.getHelperUser().submitRegistration();
+        app.getHelperUser().pause(5000);
+        logger.info("registrationPositiveTest" + email + "&" + password);
+        Assert.assertTrue(app.getHelperUser().isElementPresent(By.tagName("button")));
+    }
 
 
-
-    @Test
+    @Test(groups = {"negative"})
     public void registrationNegativeTestWrongEmail(){
         app.getHelperUser().openLoginRegistrationForm();
         app.getHelperUser().fillLoginRegistrationForm("katymail.ru","Kk12345!");
@@ -35,7 +58,7 @@ public class RgistrationTests extends TestBase{
         Assert.assertTrue(app.getHelperUser().isAlertPresent());
     }
 
-    @Test
+    @Test(groups = {"negative"})
     public void registrationNegativeTestWrongPassword(){
         app.getHelperUser().openLoginRegistrationForm();
         app.getHelperUser().fillLoginRegistrationForm("katy@mail.ru", "Kk12345");
